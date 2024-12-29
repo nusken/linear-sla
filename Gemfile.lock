@@ -109,11 +109,18 @@ GEM
     erubi (1.13.1)
     et-orbi (1.2.11)
       tzinfo
+    fiber-storage (1.0.0)
     fugit (1.11.1)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    graphql (2.4.8)
+      base64
+      fiber-storage
+    graphql-client (0.25.0)
+      activesupport (>= 3.0)
+      graphql (>= 1.13.0)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.1.0)
@@ -286,6 +293,8 @@ GEM
     rake (13.2.1)
     rdoc (6.10.0)
       psych (>= 4.0.0)
+    redis-client (0.23.0)
+      connection_pool
     regexp_parser (2.10.0)
     reline (0.6.0)
       io-console (~> 0.5)
@@ -320,6 +329,8 @@ GEM
       rubocop-rails
     ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
+    rufus-scheduler (3.9.2)
+      fugit (~> 1.1, >= 1.11.1)
     securerandom (0.4.1)
     selenium-webdriver (4.27.0)
       base64 (~> 0.2)
@@ -327,6 +338,15 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    sidekiq (7.3.7)
+      connection_pool (>= 2.3.0)
+      logger
+      rack (>= 2.2.4)
+      redis-client (>= 0.22.2)
+    sidekiq-scheduler (5.0.6)
+      rufus-scheduler (~> 3.2)
+      sidekiq (>= 6, < 8)
+      tilt (>= 1.4.0, < 3)
     solid_cable (3.0.5)
       actioncable (>= 7.2)
       activejob (>= 7.2)
@@ -373,6 +393,7 @@ GEM
     thruster (0.1.9-arm64-darwin)
     thruster (0.1.9-x86_64-darwin)
     thruster (0.1.9-x86_64-linux)
+    tilt (2.5.0)
     timeout (0.4.3)
     turbo-rails (2.0.11)
       actionpack (>= 6.0.0)
@@ -414,6 +435,7 @@ DEPENDENCIES
   brakeman
   capybara
   debug
+  graphql-client (~> 0.25.0)
   importmap-rails
   jbuilder
   kamal
@@ -424,6 +446,8 @@ DEPENDENCIES
   rails (~> 8.0.1)
   rubocop-rails-omakase
   selenium-webdriver
+  sidekiq (~> 7.3.7)
+  sidekiq-scheduler (~> 5.0.6)
   solid_cable
   solid_cache
   solid_errors (~> 0.5)

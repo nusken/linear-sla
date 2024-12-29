@@ -67,3 +67,12 @@ gem "mission_control-jobs", "~> 0.3"
 gem "litestream", "~> 0.11.0"
 # Add Solid Errors for error monitoring
 gem "solid_errors", "~> 0.5"
+
+# Execute GraphQL queries and mutations
+gem "graphql-client", "~> 0.25.0"
+
+# Background jobs
+gem "sidekiq", "~> 7.3.7"
+
+# Scheduler
+gem "sidekiq-scheduler", "~> 5.0.6"
