@@ -1,0 +1,46 @@
+<%= form_with(model: @sla_rule, html: {data: {controller: "sla-form"}}) do |form| %>
+  <% if @sla_rule.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sla_rule.errors.count, "error") %> prohibited this sla_rule from being saved:</h2>
+
+      <ul>
+      <% @sla_rule.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :filter_type %>
+    <%= form.select :filter_type, options_for_select([['Has Status', 'state'], ['Has Label', 'label'], ['Priority', 'priority']], @sla_rule.filter_type), {}, class: "form-select",  data: { action: "change->sla-form#filterTypeChanged", "sla-form-target" => "filterType" }  %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :filter_value %>
+    <%= form.select :filter_value, Linear::PRIORITY.to_a, {}, id: 'priority_select_field', class: "form-select filter-value-options", "data-filter-type" => "priority" %>
+    <%= form.select :filter_value, LinearState.pluck(:name, :name), {}, id: 'state_select_field', class: "form-select filter-value-options", "data-filter-type" => "state" %>
+    <%= form.select :filter_value, LinearLabel.pluck(:name, :name), {}, id: 'label_select_field', class: "form-select filter-value-options", "data-filter-type" => "label" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :inactive_duration, "Inactive Duration (in Hours)" %>
+    <%= form.text_field :inactive_duration, class: "form-control" %>
+  </div>
+  
+  <div class="mb-3">
+    <%= form.label :action_type %>
+    <%= form.select :action_type, options_for_select([['Add Comment', 'comment'], ['Update Status to', 'update_status'], ['Update Priority to', 'update_priority']], @sla_rule.action_type), {}, class: "form-select", data: { action: "change->sla-form#actionTypeChanged", "sla-form-target" => "actionType" } %>
+  </div>
+  
+  <div class="mb-3">
+    <%= form.label :action_details %>
+    <%= form.text_field :action_details, class: "form-control action-details-options", "data-action-type" => "comment", placeholder: "Enter comment here" %>
+    <%= form.select :action_details, Linear::PRIORITY.to_a, {}, id: 'priority_select_field', class: "form-select action-details-options", "data-action-type" => "update_priority" %>
+    <%= form.select :action_details, LinearState.pluck(:name, :name), {}, id: 'state_select_field', class: "form-select action-details-options", "data-action-type" => "update_status" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

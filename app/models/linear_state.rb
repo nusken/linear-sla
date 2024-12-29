@@ -1,0 +1,2 @@
+class LinearState < ApplicationRecord
+end

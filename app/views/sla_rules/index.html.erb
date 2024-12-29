@@ -1,0 +1,27 @@
+<h1>SLA Rules</h1>
+<table class="table">
+  <tr>
+    <th>Filter Type</th>
+    <th>Filter Value</th>
+    <th>Inactive Duration (Hours)</th>
+    <th>Action Type</th>
+    <th>Action details</th>
+    <th>Actions</th>
+  </tr>
+  
+  <% @sla_rules.each do |sla_rule| %>
+    <tr>
+      <td><%= filter_type_text(sla_rule) %></td>
+      <td><%= sla_rule.filter_value %></td>
+      <td><%= sla_rule.inactive_duration %></td>
+      <td><%= sla_rule.action_type %></td>
+      <td><%= action_details_text(sla_rule) %></td>
+      <td>
+        <%= link_to 'Edit', edit_sla_rule_path(sla_rule) %>
+        <%= link_to 'Delete', sla_rule, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'New Sla Rule', new_sla_rule_path %>

@@ -1,0 +1,13 @@
+:scheduler:
+  :schedule:
+    check_sla_breaches:
+      cron: '*/5 * * * *' # Run every 5 minutes
+      class: CheckSlaBreachesJob
+      
+    sync_states:
+      cron: '*/1 * * * *' # Run every 5 minutes
+      class: SyncStatesJob
+      
+    sync_labels:
+      cron: '*/1 * * * *' # Run every 5 minutes
+      class: SyncLabelsJob

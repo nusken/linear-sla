@@ -45,9 +45,20 @@ module Linear
     }
   GRAPHQL
 
-  FETCH_STATE_QUERY = Client.parse <<~GRAPHQL
+  FETCH_STATES_QUERY = Client.parse <<~GRAPHQL
     query($filter: WorkflowStateFilter) {
       workflowStates(filter: $filter) {
+        nodes {
+          id
+          name
+        }
+      }
+    }
+  GRAPHQL
+
+  FETCH_LABELS_QUERY = Client.parse <<~GRAPHQL
+    query {
+      issueLabels {
         nodes {
           id
           name
@@ -89,6 +100,19 @@ module Linear
         id: $issueId,
         input: {
           priority: $priority
+        }
+      ) {
+        success
+      }
+    }
+  GRAPHQL
+
+  ADD_LABEL_MUTATION = Client.parse <<~GRAPHQL
+    mutation($issueId: String!, $labelId: String!) {
+      issueUpdate(
+        id: $issueId,
+        input: {
+          labelIds: [$labelId]
         }
       ) {
         success

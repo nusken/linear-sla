@@ -10,11 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_29_015452) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_29_091225) do
   create_table "action_logs", force: :cascade do |t|
     t.string "issue_id"
     t.integer "action_type"
     t.text "action_details"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "linear_labels", force: :cascade do |t|
+    t.string "name"
+    t.string "label_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "linear_states", force: :cascade do |t|
+    t.string "name"
+    t.string "state_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

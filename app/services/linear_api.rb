@@ -24,7 +24,11 @@ class LinearApi
       filter = {}
     end
 
-    execute_query(Linear::FETCH_STATE_QUERY, filter: filter).dig("workflowStates", "nodes")
+    execute_query(Linear::FETCH_STATES_QUERY, filter: filter).dig("workflowStates", "nodes")
+  end
+
+  def self.fetch_labels
+    execute_query(Linear::FETCH_LABELS_QUERY).dig("issueLabels", "nodes")
   end
 
   def self.comment(issue_id:, comment: "")
@@ -48,6 +52,13 @@ class LinearApi
     }).issue_update
   end
 
+  def self.add_label(issue_id:, label_id:)
+    execute_mutation(Linear::ADD_LABEL_MUTATION, {
+      issueId: issue_id,
+      labelId: label_id
+    }).issue_update
+  end
+
 
   private
 
@@ -61,6 +72,7 @@ class LinearApi
 
   def self.generate_filter_object(filter_type, filter_value)
     filter_object = {}
+
     if filter_type == "state"
       filter_object = {
         state: {
@@ -69,7 +81,6 @@ class LinearApi
           }
         }
       }
-
     elsif filter_type == "label"
       filter_object = {
         labels: {

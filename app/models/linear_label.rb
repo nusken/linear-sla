@@ -1,0 +1,2 @@
+class LinearLabel < ApplicationRecord
+end
