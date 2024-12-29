@@ -21,7 +21,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_29_015452) do
 
   create_table "sla_rules", force: :cascade do |t|
     t.integer "filter_type"
-    t.integer "filter_target"
+    t.string "filter_value"
     t.integer "inactive_duration"
     t.integer "action_type"
     t.text "action_details"

@@ -1,15 +1,15 @@
 class SlaRule < ApplicationRecord
-  enum action_type: {
+  enum :action_type, {
     comment: 0,
-    change_status: 1,
-    flag: 2
+    update_status: 1,
+    update_priority: 2
   }
 
-  enum filter_type: {
-    by_tag: 0,
-    by_priority: 1,
-    by_status: 2
+  enum :filter_type, {
+    priority: 0,
+    label: 1,
+    state: 2
   }
 
-  validates :filter_type, :filter_target, :inactive_duration, :action_type, presence: true
+  validates :filter_type, :filter_value, :inactive_duration, :action_type, presence: true
 end

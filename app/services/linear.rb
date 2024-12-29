@@ -36,7 +36,10 @@ module Linear
           id
           title
           priority
-          state
+          state {
+            name
+          }
+          updatedAt
         }
       }
     }
@@ -73,6 +76,19 @@ module Linear
         id: $issueId,
         input: {
           stateId: $statusId
+        }
+      ) {
+        success
+      }
+    }
+  GRAPHQL
+
+  UPDATE_PRIORITY_MUTATION = Client.parse <<~GRAPHQL
+    mutation($issueId: String!, $priority: Int!) {
+      issueUpdate(
+        id: $issueId,
+        input: {
+          priority: $priority
         }
       ) {
         success
