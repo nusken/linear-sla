@@ -5,9 +5,9 @@
       class: CheckSlaBreachesJob
       
     sync_states:
-      cron: '*/1 * * * *' # Run every 5 minutes
+      cron: '* * * * *' # Run every minute
       class: SyncStatesJob
       
     sync_labels:
-      cron: '*/1 * * * *' # Run every 5 minutes
+      cron: '* * * * *' # Run every minute
       class: SyncLabelsJob
