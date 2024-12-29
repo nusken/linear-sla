@@ -56,7 +56,7 @@ For matching issues, we could perform the following actions:
 
 ## How to support new criteria or actions?
 
-### New criteria
+### New filter
 + Define how the new filter in the `generate_filter_object` method inside the `LinearApi` class
 
 ### New action
@@ -68,4 +68,4 @@ For matching issues, we could perform the following actions:
 + Update logic in `CheckSlaBreachesJob` to handle the corresponding action
 
 ### Web UI
-When adding new filter or action, we also need to update the UI accordingly if we want users to be able to add these rules**
+When adding new filter or action, we also need to update the UI accordingly if we want users to be able to add these rules
