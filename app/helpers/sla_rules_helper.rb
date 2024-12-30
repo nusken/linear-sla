@@ -20,6 +20,14 @@ module SlaRulesHelper
     end
   end
 
+  def filter_value_text(rule)
+    if rule.filter_type == "priority"
+      Linear::PRIORITY.invert[rule.filter_value.to_i]
+    else
+      rule.filter_value
+    end
+  end
+
   def action_details_text(rule)
     if rule.action_type == "update_priority"
       Linear::PRIORITY.invert[rule.action_details.to_i]
