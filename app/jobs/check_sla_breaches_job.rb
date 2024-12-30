@@ -23,7 +23,7 @@ class CheckSlaBreachesJob < ApplicationJob
       status = LinearState.where(name: rule.action_details).first
 
       if status.present?
-        LinearApi.update_status(issue_id: issue["id"], status_id: status.linear_id)
+        LinearApi.update_status(issue_id: issue["id"], status_id: status.state_id)
       else
         Rails.logger.error "Status not found: #{rule.action_details}"
       end
