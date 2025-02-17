@@ -72,7 +72,7 @@ gem "solid_errors", "~> 0.5"
 gem "graphql-client", "~> 0.25.0"
 
 # Background jobs
-gem "sidekiq", "~> 7.3.7"
+gem "sidekiq", "~> 7.3.9"
 
 # Scheduler
 gem "sidekiq-scheduler", "~> 5.0.6"
